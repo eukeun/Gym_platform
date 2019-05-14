@@ -55,14 +55,14 @@ public class NavigationActivity extends AppCompatActivity
         navigationView3.setNavigationItemSelectedListener(this);
         View nav_header_view = navigationView3.getHeaderView(0);
 
-       /* ImageView point_button = (ImageView) findViewById(R.id.ImageButton_point);
+       ImageView point_button = (ImageView) nav_header_view.findViewById(R.id.ImageButton_point);
         point_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NavigationActivity.this, PayActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
         ImageView nav_header_logout_button = (ImageView) nav_header_view.findViewById(R.id.ImageButton_logout);
         nav_header_logout_button.setOnClickListener(new View.OnClickListener() {
