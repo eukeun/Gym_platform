@@ -37,6 +37,7 @@ public class NavigationActivity extends AppCompatActivity
     List<Drawable> temp;
     Button button;
 
+    
     //로그인 모듈 변수
     private FirebaseAuth mAuth;
     //현재 로그인 된 유저 정보 담을 변수
