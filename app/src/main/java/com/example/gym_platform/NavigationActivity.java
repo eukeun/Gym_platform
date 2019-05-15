@@ -37,7 +37,7 @@ public class NavigationActivity extends AppCompatActivity
     List<Drawable> temp;
     Button button;
 
-    
+
     //로그인 모듈 변수
     private FirebaseAuth mAuth;
     //현재 로그인 된 유저 정보 담을 변수
@@ -56,7 +56,7 @@ public class NavigationActivity extends AppCompatActivity
         navigationView3.setNavigationItemSelectedListener(this);
         View nav_header_view = navigationView3.getHeaderView(0);
 
-       ImageView point_button = (ImageView) nav_header_view.findViewById(R.id.ImageButton_point);
+        ImageView point_button = (ImageView) nav_header_view.findViewById(R.id.ImageButton_point);
         point_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +77,7 @@ public class NavigationActivity extends AppCompatActivity
         /////
 
 
-        TextView tv = (TextView)findViewById(R.id.textView);
+        TextView tv = (TextView) findViewById(R.id.textView);
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
