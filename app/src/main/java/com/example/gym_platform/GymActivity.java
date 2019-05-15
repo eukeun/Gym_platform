@@ -8,7 +8,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -17,16 +16,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.TabHost;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GymActivity extends AppCompatActivity {
 
-    ViewPager vp;
-    LinearLayout ll;
+
     List<Drawable> temp;
 
     @Override
@@ -34,61 +31,18 @@ public class GymActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gym);
 
-        vp = (ViewPager) findViewById(R.id.vp);
-        ll = (LinearLayout) findViewById(R.id.ll);
-        TextView tab_first = (TextView) findViewById(R.id.tab_first);
-        TextView tab_second = (TextView) findViewById(R.id.tab_second);
-        TextView tab_third = (TextView) findViewById(R.id.tab_third);
 
-        vp.setAdapter(new pagerAdapter(getSupportFragmentManager()));
-        vp.setOffscreenPageLimit(2);
-        vp.setCurrentItem(0);
-
-        tab_first.setOnClickListener(movePageListener);
-        tab_first.setTag(0);
-        tab_second.setOnClickListener(movePageListener);
-        tab_second.setTag(1);
-        tab_third.setOnClickListener(movePageListener);
-        tab_third.setTag(2);
-
-        tab_first.setSelected(true);
-
-        vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                int i = 0;
-                while (i < 3) {
-                    if (position == i) {
-                        ll.findViewWithTag(i).setSelected(true);
-                    } else {
-                        ll.findViewWithTag(i).setSelected(false);
-                    }
-                    i++;
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
 
 
         temp = new ArrayList<>();
         temp.add(ContextCompat.getDrawable(this, R.drawable.default_dot));
-        temp.add(ContextCompat.getDrawable(this, R.drawable.selected_dot));
-        temp.add(ContextCompat.getDrawable(this, R.drawable.tab_selector));
+        temp.add(ContextCompat.getDrawable(this, R.drawable.default_dot));
+        temp.add(ContextCompat.getDrawable(this, R.drawable.default_dot));
 
         Adapter a = new Adapter(temp, this);
 
         ViewPager pager = findViewById(R.id.viewpager1);
         pager.setAdapter(a);
-
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(pager, true);
@@ -113,50 +67,28 @@ public class GymActivity extends AppCompatActivity {
         fragmentAdapter1.notifyDataSetChanged();
 
 
+        TabHost tab_host = (TabHost) findViewById(R.id.tabhost);
+        tab_host.setup();
+
+        TabHost.TabSpec ts1 = tab_host.newTabSpec("tab1");
+        ts1.setIndicator("상품");
+        ts1.setContent(R.id.tab1);
+        tab_host.addTab(ts1);
+
+        TabHost.TabSpec ts2 = tab_host.newTabSpec("tab2");
+        ts2.setIndicator("정보");
+        ts2.setContent(R.id.tab2);
+        tab_host.addTab(ts2);
+
+        TabHost.TabSpec ts3 = tab_host.newTabSpec("tab3");
+        ts3.setIndicator("리뷰");
+        ts3.setContent(R.id.tab3);
+        tab_host.addTab(ts3);
+
+        tab_host.setCurrentTab(0);
+
     }
 
-
-    View.OnClickListener movePageListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            int tag = (int) v.getTag();
-            int i = 0;
-            while (i < 3) {
-                if (tag == i) {
-                    ll.findViewWithTag(i).setSelected(true);
-                } else {
-                    ll.findViewWithTag(i).setSelected(false);
-                }
-                i++;
-            }
-            vp.setCurrentItem(tag);
-        }
-    };
-
-    private class pagerAdapter extends FragmentStatePagerAdapter {
-        public pagerAdapter(android.support.v4.app.FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public android.support.v4.app.Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return new GymFragment1();
-                case 1:
-                    return new GymFragment2();
-                case 2:
-                    return new GymFragment3();
-                default:
-                    return null;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
-        }
-    }
 
     class FragmentAdapter extends FragmentPagerAdapter {
 
@@ -221,6 +153,7 @@ public class GymActivity extends AppCompatActivity {
         }
 
     }
-
 }
+
+
 

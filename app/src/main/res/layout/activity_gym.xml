@@ -1,104 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:orientation="vertical">
 
-    <!--android:paddingBottom="@dimen/activity_vertical_margin"android:paddingLeft="@dimen/activity_horizontal_margin"android:paddingRight="@dimen/activity_horizontal_margin"android:paddingTop="@dimen/activity_vertical_margin" -->
-
-    <LinearLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewpager1"
-                android:layout_width="match_parent"
-                android:layout_height="200dp" />
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/viewpager1"
-                android:layout_alignBottom="@+id/viewpager1"
-                android:paddingRight="15dp"
-                app:tabBackground="@drawable/tab_selector"
-                app:tabGravity="center"
-                app:tabIndicatorHeight="0dp" />
-        </RelativeLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/tab_first"
-            android:layout_width="200px"
-            android:layout_height="50dp"
-            android:layout_marginLeft="140px"
-            android:layout_marginRight="140px"
-            android:background="@drawable/tab_bg_selector"
-            android:gravity="center"
-            android:text="상품"
-            android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/tab_second"
-            android:layout_width="200px"
-            android:layout_height="50dp"
-            android:layout_marginLeft="140px"
-            android:layout_marginRight="140px"
-            android:background="@drawable/tab_bg_selector"
-            android:gravity="center"
-            android:text="정보"
-            android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/tab_third"
-            android:layout_width="200px"
-            android:layout_height="50dp"
-            android:layout_marginLeft="140px"
-            android:layout_marginRight="140px"
-            android:background="@drawable/tab_bg_selector"
-            android:gravity="center"
-            android:text="리뷰"
-            android:textColor="#000000" />
-    </LinearLayout>
-
-    <ScrollView
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/ivMainImage"
-        android:layout_alignLeft="@+id/ivMainImage"
-        android:layout_weight="3">
-
-        <LinearLayout
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:fitsSystemWindows="true">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp"
+            <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="500dp" />
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-        </LinearLayout>
-    </ScrollView>
+                <LinearLayout
+                    android:id="@+id/gymname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
 
-    -
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewpager1"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_weight="1"
+                        android:background="#ffffff" />
+
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/tab_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        app:tabBackground="@drawable/tab_selector"
+                        app:tabGravity="center"
+                        app:tabIndicatorHeight="0dp" />
+
+                </LinearLayout>
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                >
+                <TabHost
+                    android:id="@+id/tabhost"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TabWidget
+                        android:id="@android:id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+/>
+
+                    <FrameLayout
+                        android:id="@android:id/tabcontent"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+                        <ScrollView
+                            android:id="@+id/tab1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent">
+
+                            <TableRow
+                                android:id="@+id/tableRow1"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content">
+
+                                <include layout="@layout/fragment_gym1" />
+                            </TableRow>
+                        </ScrollView>
+
+                        <ScrollView
+                            android:id="@+id/tab2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <include layout="@layout/fragment_gym2" />
+                        </ScrollView>
+
+                        <ScrollView
+                            android:id="@+id/tab3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <include layout="@layout/fragment_gym3" />
+                        </ScrollView>
+                    </FrameLayout>
+                </LinearLayout>
+
+                </TabHost>
+            </android.support.v4.widget.NestedScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
 
     <LinearLayout
         android:id="@+id/layoutBottomButtons"
@@ -110,7 +125,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="76px">
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp">
 
             <Button
                 android:id="@+id/btnCall"
@@ -138,4 +154,3 @@
     </LinearLayout>
 
 </LinearLayout>
-
